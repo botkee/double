@@ -131,6 +131,7 @@ cp -R pki/tls.key client-keys/
 cp -R pki/private/client.key client-keys/
 cp -R pki/issued/client.crt client-keys/
 tar -cvf client.tar client-keys
+mv client.tar /root/
 
 #Теперь нам осталось создать файл конфигурации на сервере B:
 # nano /etc/openvpn/server.conf
@@ -191,6 +192,7 @@ systemctl enable openvpn@server
 systemctl start openvpn@server
 
 #Скачиваем скрипт для первого сервера
+cd
 wget -O run1.sh https://raw.githubusercontent.com/botkee/double/master/first.sh
 sed -ie "s/ip2replace/$IP2/g" run1.sh
 
