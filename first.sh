@@ -6,7 +6,7 @@ INTERFACE=$(ip route get 8.8.8.8 | sed -nr 's/.*dev ([^\ ]+).*/\1/p')
 
 IP2=ip2replace
 
-apt update && apt upgrade
+apt update && apt upgrade -y
 
 apt install secure-delete -y
 
