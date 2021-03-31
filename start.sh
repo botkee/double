@@ -2,7 +2,7 @@
 #
 #Usage login to first server and run this script: 
 #
-# wget https://raw.githubusercontent.com/botkee/double/main/start.sh && chmod +x start
+# wget https://raw.githubusercontent.com/botkee/double/main/start.sh && chmod +x start.sh && bash start.sh
 #
 
 apt install tor -y
