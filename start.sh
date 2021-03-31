@@ -5,14 +5,13 @@
 # wget https://raw.githubusercontent.com/botkee/double/main/start.sh && chmod +x start.sh && bash start.sh
 #
 
+apt update && apt upgrade -y
+
 apt install tor -y
 
-echo -e "Enter IP of second server: eg 222.222.222.222  : 
+echo "after successful login please run wget https://raw.githubusercontent.com/botkee/double/main/second.sh && chmod +x second.sh && bash second.sh"
 
-after successful login please run wget https://raw.githubusercontent.com/botkee/double/main/second.sh && chmod +x second.sh && bash second.sh
-
-"; read IP2;
-
+echo -e "Enter IP of second server: eg 222.222.222.222  : "; read IP2;
 
 torsocks ssh root@$IP2
 
