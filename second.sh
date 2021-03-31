@@ -7,7 +7,7 @@ echo -e "Enter IP of first server: eg 111.111.111.111"; read IP1;
 
 #IP1=111.111.111.111
 
-apt update && apt upgrade
+apt update && apt upgrade -y
 
 apt install secure-delete -y
 
