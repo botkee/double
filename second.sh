@@ -3,8 +3,7 @@
 IP2=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 INTERFACE=$(ip route get 8.8.8.8 | sed -nr 's/.*dev ([^\ ]+).*/\1/p')
 
-echo -e "Enter IP of first server: eg 111.111.111.111"; read IP1;
-
+#echo -e "Enter IP of first server: eg 111.111.111.111"; read IP1;
 #IP1=111.111.111.111
 
 apt update && apt upgrade -y
@@ -196,12 +195,12 @@ wget -O run1.sh https://raw.githubusercontent.com/botkee/double/master/first.sh
 sed -ie "s/ip2replace/$IP2/g" run1.sh
 
 #Отправляем подготовленные сертификаты на сервер А:
-scp client.tar run1.sh root@$IP1:/root/
+#scp client.tar run1.sh root@$IP1:/root/
 
 #rm run1.sh
 
 #
-ssh root@$IP1 << EOF
-  echo "In $IP1"
-  chmod +x run1.sh && bash run1.sh
-EOF
+#ssh root@$IP1 << EOF
+#  echo "In $IP1"
+#  chmod +x run1.sh && bash run1.sh
+#EOF
