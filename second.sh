@@ -90,13 +90,14 @@ adduser nobody
 usermod -aG nogroup nobody
 
 #Теперь нам необходимо сгенерировать сертификаты для сервера и клиентов, для этого проверим где находятся утилита для генерации сертификатов:
-whereis easy-rsa
+#whereis easy-rsa
 #easy-rsa: /usr/share/easy-rsa
 
-sleep 5
+#узнаем путь к easy-rsa
+easyrsalocation=$(whereis easy-rsa | cut -d: -f2 | cut -c 2-)
 
 #Перейдем в каталог и приступим к генерации сертификатов для openvpn:
-cd /usr/share/easy-rsa
+cd $easyrsalocation
 
 #Генерируем CA сертификат.
 ./easyrsa init-pki
