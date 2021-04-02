@@ -1,11 +1,43 @@
 #!/bin/bash
 
+
+while true
+do
+
+##############################################################################################################
+
+# Banner
+
+f_banner(){
+echo
+echo "
+                          .__                   __           .__   .__                   
+___  ________    ____      |__|  ____    _______/  |_ _____   |  |  |  |    ____ _______  
+\  \/ /\____ \  /    \     |  | /    \  /  ___/\   __\\__  \  |  |  |  |  _/ __ \\_  __ \ 
+ \   / |  |_> >|   |  \    |  ||   |  \ \___ \  |  |   / __ \_|  |__|  |__\  ___/ |  | \/ 
+  \_/  |   __/ |___|  /    |__||___|  //____  > |__|  (____  /|____/|____/ \___  >|__|    
+       |__|         \/              \/      \/             \/                  \/         
+|     .-.
+|    /   \         .-.
+|   /     \       /   \       .-.     .-.     _   _
++--/-------\-----/-----\-----/---\---/---\---/-\-/-\/\/---
+| /         \   /       \   /     '-'     '-'
+|/           '-'         '-'
+
+For debian 10"
+echo
+echo
+
+}
+
+
 IP1=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 INTERFACE=$(ip route get 8.8.8.8 | sed -nr 's/.*dev ([^\ ]+).*/\1/p')
 #IP2=
 
 IP2=ip2replace
 
+install_vpn_only(){
 apt update && apt upgrade -y
 
 apt install secure-delete -y
@@ -286,3 +318,72 @@ done
 
 cd /root/configs
 ls
+}
+
+install_tor_middlebox(){
+useradd -m anon
+usermod -a -G nogroup anon
+sed -i 's/nobody/anon/g' /etc/openvpn/client.conf
+echo "" >> /etc/tor/torrc
+echo "VirtualAddrNetwork 10.192.0.0/10" >> /etc/tor/torrc
+echo "AutomapHostsOnResolve 1" >> /etc/tor/torrc
+echo "DNSPort 5353" >> /etc/tor/torrc
+echo "TransPort 9040" >> /etc/tor/torrc
+service tor restart
+cd
+wget https://raw.githubusercontent.com/botkee/double/main/middlebox.sh
+chmod +x /root/middlebox.sh
+bash /root/middlebox.sh
+service openvpn@client restart
+}
+
+
+f_banner
+echo -e "\e[34m---------------------------------------------------------------------------------------------------------\e[00m"
+echo -e "\e[93m[+]\e[00m Выберите требуемую опцию"
+echo -e "\e[34m---------------------------------------------------------------------------------------------------------\e[00m"
+echo ""
+echo "1. Install Simple Double Openvpn (VPN1-VPN2)"
+echo "2. Install Openvpn With Tor Middlebox (VPN1-TOR-VPN2)"
+echo "3. Install Tor Middlebox only (If Double Openvpn Was Installed)"
+echo "0. Exit"
+echo
+
+read choice2
+
+case $choice2 in
+
+#0)
+#update_system
+#install_dep
+#;;
+
+1)
+install_vpn_only
+;;
+
+2)
+install_vpn_only
+install_tor_middlebox
+;;
+
+3)
+install_tor_middlebox
+;;
+
+0)
+exit 0
+;;
+
+esac
+
+echo ""
+  echo ""
+  echo "Press [enter] to restart script or [q] and then [enter] to quit"
+  read x
+  if [[ "$x" == 'q' ]]
+  then
+    break
+  fi
+done
+
