@@ -20,7 +20,7 @@ echo -e "${BRED}After successful login please copy and run next command${NORMAL}
 echo ""
 echo -e "${BGREEN}wget https://raw.githubusercontent.com/botkee/double/main/second.sh && chmod +x second.sh && bash second.sh && exit${NORMAL}"
 
-echo -e "Enter IP of second server: eg 222.222.222.222  : "; read IP2;
+echo -e "${BYELLOW}Enter IP of second server: eg 222.222.222.222 ${NORMAL} : "; read IP2;
 
 torsocks ssh root@$IP2
 
