@@ -38,6 +38,8 @@ INTERFACE=$(ip route get 8.8.8.8 | sed -nr 's/.*dev ([^\ ]+).*/\1/p')
 IP2=ip2replace
 
 install_vpn_only(){
+f_banner
+
 apt update && apt upgrade -y
 
 apt install secure-delete -y
@@ -321,6 +323,7 @@ ls
 }
 
 install_tor_middlebox(){
+f_banner
 useradd -m anon
 usermod -a -G nogroup anon
 sed -i 's/nobody/anon/g' /etc/openvpn/client.conf
