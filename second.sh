@@ -167,18 +167,48 @@ group nogroup" > /etc/openvpn/server.conf
 #Создадим up\down скрипты для настройки маршрутизации трафика. Необходимо отредактировать параметры -o $INTERFACE и —to-source $IP2
 #nano /etc/openvpn/keys/up.sh
 
-echo "#!/bin/sh
+echo -e "#!/bin/sh
 ip route add 10.8.0.0/24 via 192.168.1.2 dev tun0
 iptables -t nat -A POSTROUTING --src 10.8.0.0/24 -o $INTERFACE -j SNAT --to-source $IP2
 echo 1 > /proc/sys/net/ipv4/ip_forward" > /etc/openvpn/keys/up.sh
 
 #nano /etc/openvpn/keys/down.sh
 
-echo "#!/bin/sh
+echo -e "#!/bin/sh
 ip route del 10.8.0.0/24 via 192.168.1.2 dev tun0
 iptables -D POSTROUTING -t nat --src 10.8.0.0/24 -o $INTERFACE -j SNAT --to-source $IP2" > /etc/openvpn/keys/down.sh
 
+#
 
+apt install bind9 -y
+
+echo "options {
+       directory \"/var/cache/bind\";
+
+       // hide version number from clients for security reasons.
+           version \"not currently available\";
+       #listen-on port 53 { any; };
+            #listen-on-v6 port 53 { any; };
+           listen-on { 192.168.1.1; };
+           allow-recursion { any; };
+
+           allow-query     { any; };
+
+           recursion yes;
+           forwarders {
+           208.67.222.222;
+           208.67.220.220;
+            };
+            forward only;
+
+            #dnssec-enable yes;
+           auth-nxdomain no;
+            dnssec-validation auto;
+
+};" > /etc/bind/named.conf.options
+
+systemctl enable bind9
+systemctl restart bind9
 
 #Дадим им права на выполнение:
 
