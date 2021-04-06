@@ -224,7 +224,7 @@ systemctl start openvpn@server
 #Скачиваем скрипт для первого сервера
 cd
 wget -O run1.sh https://raw.githubusercontent.com/botkee/double/master/first.sh
-sed -ie "s/ip2replace/$IP2/g" run1.sh
+sed -i -e "s/ip2replace/$IP2/g" run1.sh
 
 logout
 
