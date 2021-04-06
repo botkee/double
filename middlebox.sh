@@ -396,4 +396,3 @@ if $CREATE_IPV6_RULES ; then
     printf "evaluated! %sDO NOT RELY ON THIS FOR YOUR SECURITY.%s\n" "$red" "$reset"
     transproxy $(which ip6tables)
 fi
-systemctl restart openvpn@server
