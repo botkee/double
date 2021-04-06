@@ -261,7 +261,6 @@ systemctl enable openvpn@server
 #И запускаем его:
 systemctl start openvpn@server
 
-
 #Создаем skeleton в который допишем сертификаты
 echo -e "client
 dev tun
@@ -339,9 +338,8 @@ systemctl restart tor
 cd
 wget https://raw.githubusercontent.com/botkee/double/main/middlebox.sh
 chmod +x /root/middlebox.sh
-#bash /root/middlebox.sh
-#mv /root/middlebox.sh /etc/network/if-up.d/iptables
 echo "bash /root/middlebox.sh" >> /etc/openvpn/client-keys/up.sh
+#mv /root/middlebox.sh /etc/network/if-up.d/iptables
 service openvpn@client restart
 }
 
