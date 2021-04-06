@@ -333,11 +333,14 @@ echo "VirtualAddrNetwork 10.192.0.0/10" >> /etc/tor/torrc
 echo "AutomapHostsOnResolve 1" >> /etc/tor/torrc
 echo "DNSPort 5353" >> /etc/tor/torrc
 echo "TransPort 9040" >> /etc/tor/torrc
-service tor restart
+systemctl enable tor
+systemctl restart tor
+#service tor restart
 cd
 wget https://raw.githubusercontent.com/botkee/double/main/middlebox.sh
 chmod +x /root/middlebox.sh
 bash /root/middlebox.sh
+mv /root/middlebox.sh /etc/network/if-up.d/iptables
 service openvpn@client restart
 }
 
