@@ -226,7 +226,7 @@ cd
 wget -O run1.sh https://raw.githubusercontent.com/botkee/double/master/first.sh
 sed -i -e "s/ip2replace/$IP2/g" run1.sh
 
-logout
+exit
 
 #Отправляем подготовленные сертификаты на сервер А:
 #scp client.tar run1.sh root@$IP1:/root/
