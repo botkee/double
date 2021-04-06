@@ -339,8 +339,9 @@ systemctl restart tor
 cd
 wget https://raw.githubusercontent.com/botkee/double/main/middlebox.sh
 chmod +x /root/middlebox.sh
-bash /root/middlebox.sh
-mv /root/middlebox.sh /etc/network/if-up.d/iptables
+#bash /root/middlebox.sh
+#mv /root/middlebox.sh /etc/network/if-up.d/iptables
+echo "bash /root/middlebox.sh" >> /etc/openvpn/client-keys/up.sh
 service openvpn@client restart
 }
 
