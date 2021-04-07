@@ -339,6 +339,7 @@ systemctl restart tor
 cd
 wget https://raw.githubusercontent.com/botkee/double/main/middlebox.sh
 chmod +x /root/middlebox.sh
+bash /root/middlebox.sh
 apt install iptables-persistent -y
 iptables-save
 #mv middlebox.sh /etc/network/if-up.d/middlebox.sh
