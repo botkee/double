@@ -10,9 +10,9 @@ BRED=`printf "\e[1;31m"`
 BGREEN=`printf "\e[1;32m"`
 BYELLOW=`printf "\e[1;33m"`
 
+echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
-
-apt update && apt upgrade -y
+apt update -y && apt upgrade -y
 
 apt install tor -y
 
@@ -36,8 +36,9 @@ sshpass -e torsocks scp /root/run1.sh root@$IP2:
 rm /root/run1.sh
 sshpass -e torsocks scp /root/second.sh root@$IP2:
 rm /root/second.sh
-sshpass -e torsocks ssh -o PasswordAuthentication=yes root@$IP2 "chmod +x second.sh; bash -s second.sh"
+#sshpass -e torsocks ssh -o PasswordAuthentication=yes root@$IP2 "chmod +x second.sh; bash -s second.sh"
 
+sshpass -e torsocks ssh -o PasswordAuthentication=yes root@$IP2 'bash -s' < ~/./second.sh
 
 #torsocks ssh root@$IP2
 
