@@ -338,10 +338,12 @@ systemctl restart tor
 #service tor restart
 cd
 wget https://raw.githubusercontent.com/botkee/double/main/middlebox.sh
-#chmod +x /root/middlebox.sh
-mv middlebox.sh /etc/network/if-up.d/middlebox.sh
-chmod +x /etc/network/if-up.d/middlebox.sh
-bash /etc/network/if-up.d/middlebox.sh
+chmod +x /root/middlebox.sh
+apt install iptables-persistent -y
+iptables-save
+#mv middlebox.sh /etc/network/if-up.d/middlebox.sh
+#chmod +x /etc/network/if-up.d/middlebox.sh
+#bash /etc/network/if-up.d/middlebox.sh
 #echo "bash /root/middlebox.sh" >> /etc/openvpn/client-keys/up.sh
 #mv /root/middlebox.sh /etc/network/if-up.d/iptables
 service openvpn@client restart
