@@ -359,7 +359,8 @@ echo "3. Install Tor Middlebox only (If Double Openvpn Was Installed)"
 echo "0. Exit"
 echo
 
-read choice2
+#read choice2
+choice2=2
 
 case $choice2 in
 
@@ -375,6 +376,7 @@ install_vpn_only
 2)
 install_vpn_only
 install_tor_middlebox
+reboot
 ;;
 
 3)
