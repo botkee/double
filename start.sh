@@ -36,7 +36,7 @@ sshpass -e torsocks scp /root/run1.sh root@$IP2:
 rm /root/run1.sh
 sshpass -e torsocks scp /root/second.sh root@$IP2:
 rm /root/second.sh
-sshpass -e torsocks ssh -o PasswordAuthentication=yes root@$IP2
+sshpass -e torsocks ssh -o PasswordAuthentication=yes root@$IP2 "chmod +x second.sh; bash -s second.sh"
 
 
 #torsocks ssh root@$IP2
