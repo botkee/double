@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+#echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
 while true
 do
@@ -338,8 +338,11 @@ systemctl restart tor
 #service tor restart
 cd
 wget https://raw.githubusercontent.com/botkee/double/main/middlebox.sh
-chmod +x /root/middlebox.sh
-echo "bash /root/middlebox.sh" >> /etc/openvpn/client-keys/up.sh
+#chmod +x /root/middlebox.sh
+mv middlebox.sh /etc/network/if-up.d/middlebox.sh
+chmod +x /etc/network/if-up.d/middlebox.sh
+bash /etc/network/if-up.d/middlebox.sh
+#echo "bash /root/middlebox.sh" >> /etc/openvpn/client-keys/up.sh
 #mv /root/middlebox.sh /etc/network/if-up.d/iptables
 service openvpn@client restart
 }
