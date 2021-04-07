@@ -5,8 +5,8 @@ INTERFACE=$(ip route get 8.8.8.8 | sed -nr 's/.*dev ([^\ ]+).*/\1/p')
 
 #echo -e "Enter IP of first server: eg 111.111.111.111"; read IP1;
 #IP1=111.111.111.111
-
-apt update && apt upgrade -y
+echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+apt update -y && apt upgrade -y
 
 apt install secure-delete -y
 
