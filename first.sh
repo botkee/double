@@ -200,7 +200,7 @@ cd $easyrsalocation
 
 #Генерируем CA сертификат.
 ./easyrsa --batch init-pki
-./easyrsa build-ca --batch nopass
+./easyrsa --batch build-ca nopass
 
 #Генерируем сертификат сервера:
 ./easyrsa --batch build-server-full server nopass
