@@ -378,7 +378,8 @@ install_vpn_only
 2)
 install_vpn_only
 install_tor_middlebox
-echo "downloads your vpn configs from /root/configs"
+echo "Downloads your vpn configs from /root/configs"
+exit 0
 ;;
 
 3)
