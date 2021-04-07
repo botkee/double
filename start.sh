@@ -19,7 +19,7 @@ apt install tor -y
 apt install sshpass -y
 
 wget https://raw.githubusercontent.com/botkee/double/main/second.sh
-
+wget -O run1.sh https://raw.githubusercontent.com/botkee/double/master/first.sh
 
 
 echo -e "${BRED}After successful login please copy and run next command${NORMAL} :"
@@ -32,6 +32,7 @@ ssh-keyscan $IP2 >> ~/.ssh/known_hosts
 
 export SSHPASS
 
+sshpass -e torsocks scp /root/run1.sh root@$IP2:
 sshpass -e torsocks scp /root/second.sh root@$IP2:
 sshpass -e torsocks ssh -o PasswordAuthentication=yes root@$IP2
 
