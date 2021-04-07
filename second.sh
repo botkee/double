@@ -100,16 +100,16 @@ cd $easyrsalocation
 
 #Генерируем CA сертификат.
 ./easyrsa init-pki
-./easyrsa build-ca nopass
+./easyrsa --batch build-ca nopass
 
 #Генерируем сертификат сервера:
-./easyrsa build-server-full server nopass
+./easyrsa --batch build-server-full server nopass
 
 #Генерируем сертификат клиента
-./easyrsa build-client-full client nopass
+./easyrsa --batch build-client-full client nopass
 
 #Генерируем ключ Диффи-Хеллмана:
-./easyrsa gen-dh
+./easyrsa --batch gen-dh
 
 #Генерируем ключ для tls авторизации:
 openvpn --genkey --secret pki/tls.key
@@ -223,7 +223,6 @@ systemctl start openvpn@server
 
 #Скачиваем скрипт для первого сервера
 cd
-wget -O run1.sh https://raw.githubusercontent.com/botkee/double/master/first.sh
 sed -i -e "s/ip2replace/$IP2/g" run1.sh
 
 exit
