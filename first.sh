@@ -199,17 +199,17 @@ easyrsalocation=$(whereis easy-rsa | cut -d: -f2 | cut -c 2-)
 cd $easyrsalocation
 
 #Генерируем CA сертификат.
-./easyrsa init-pki
-./easyrsa build-ca nopass
+./easyrsa --batch init-pki
+./easyrsa build-ca --batch nopass
 
 #Генерируем сертификат сервера:
-./easyrsa build-server-full server nopass
+./easyrsa --batch build-server-full server nopass
 
 #Генерируем сертификаты клиентов меняя common name (client01):
-./easyrsa build-client-full client01 nopass
+./easyrsa --batch build-client-full client01 nopass
 
 #Генерируем ключ Диффи-Хеллмана:
-./easyrsa gen-dh
+./easyrsa --batch gen-dh
 
 #Генерируем ключ для tls авторизации:
 openvpn --genkey --secret pki/tls.key
