@@ -24,7 +24,7 @@ wget -O run1.sh https://raw.githubusercontent.com/botkee/double/master/first.sh
 
 echo -e "${BRED}After successful login please copy and run next command${NORMAL} :"
 echo ""
-echo -e "${BGREEN}wget https://raw.githubusercontent.com/botkee/double/main/second.sh && chmod +x second.sh && bash second.sh && exit${NORMAL}"
+echo -e "${BGREEN}chmod +x second.sh && bash second.sh${NORMAL}"
 
 echo -e "${BYELLOW}Enter IP:PASSWORD of second server: eg 222.222.222.222:passw0rd2 ${NORMAL} : "; IFS=":" read -s IP2 SSHPASS;
 
