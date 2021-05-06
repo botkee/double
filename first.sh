@@ -333,6 +333,8 @@ echo "VirtualAddrNetwork 10.192.0.0/10" >> /etc/tor/torrc
 echo "AutomapHostsOnResolve 1" >> /etc/tor/torrc
 echo "DNSPort 5353" >> /etc/tor/torrc
 echo "TransPort 9040" >> /etc/tor/torrc
+echo "ExcludeNodes {RU},{FR},{US},{AU},{CA},{NZ},{GB},{DK},{SE},{NO},{NL},{FR},{DE},{BE},{IT},{ES}" >> /etc/tor/torrc
+echo "ExcludeExitNodes {RU},{US},{AU},{CA},{NZ},{GB},{FR},{DK},{SE},{NO},{NL},{FR},{DE},{BE},{IT},{ES}" >> /etc/tor/torrc
 systemctl enable tor
 systemctl restart tor
 #service tor restart
