@@ -10,6 +10,7 @@ BRED=`printf "\e[1;31m"`
 BGREEN=`printf "\e[1;32m"`
 BYELLOW=`printf "\e[1;33m"`
 
+apt update
 apt install sudo -y
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
