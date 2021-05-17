@@ -352,6 +352,10 @@ iptables-save
 service openvpn@client restart
 }
 
+patch_tcp(){
+wget https://raw.githubusercontent.com/botkee/double/main/patch_tcp_debian.sh
+bash patch_tcp_debian.sh
+}
 
 f_banner
 echo -e "\e[34m---------------------------------------------------------------------------------------------------------\e[00m"
@@ -382,6 +386,7 @@ install_vpn_only
 install_vpn_only
 install_tor_middlebox
 echo "Downloads your vpn configs from /root/configs"
+patch_tcp
 exit 0
 ;;
 
