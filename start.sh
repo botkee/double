@@ -15,7 +15,7 @@ apt install sudo -y
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
 apt update -y && apt upgrade -y
-
+apt install tmux -y
 apt install tor -y
 
 apt install sshpass -y
