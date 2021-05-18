@@ -6,6 +6,8 @@ apt install tmux -y
 
 wget https://raw.githubusercontent.com/botkee/double/main/start.sh
 
+chmod +x start.sh
+
 tmux kill-server
 
 tmux new-session -d -s vpnsetup;
