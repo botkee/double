@@ -42,3 +42,5 @@ sshpass -e torsocks ssh -o PasswordAuthentication=yes root@$IP2 'bash -s' < ~/./
 #torsocks ssh root@$IP2
 
 sshpass -e torsocks scp -T root@$IP2:"/root/client.tar /root/run1.sh" /root/
+
+bash /root/run1.sh
