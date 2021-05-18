@@ -46,4 +46,7 @@ sshpass -e torsocks ssh -o PasswordAuthentication=yes root@$IP2 'bash -s' < ~/./
 
 sshpass -e torsocks scp -T root@$IP2:"/root/client.tar /root/run1.sh" /root/
 
-bash /root/run1.sh
+tmux kill-server
+tmux new-session -d -s vpnsetup;
+tmux send-keys -t vpnsetup 'bash /root/run1.sh' C-m
+tmux attach-session -d -t c2;
