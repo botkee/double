@@ -8,6 +8,7 @@ INTERFACE=$(ip route get 8.8.8.8 | sed -nr 's/.*dev ([^\ ]+).*/\1/p')
 apt update
 apt install sudo -y
 apt install wget -y
+mkdir -p /root/.ssh && touch /root/.ssh/known_hosts
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 apt update -y && apt upgrade -y
 
