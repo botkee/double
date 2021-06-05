@@ -7,6 +7,7 @@ INTERFACE=$(ip route get 8.8.8.8 | sed -nr 's/.*dev ([^\ ]+).*/\1/p')
 #IP1=111.111.111.111
 apt update
 apt install sudo -y
+apt install wget -y
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 apt update -y && apt upgrade -y
 
