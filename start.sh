@@ -10,6 +10,17 @@ BRED=`printf "\e[1;31m"`
 BGREEN=`printf "\e[1;32m"`
 BYELLOW=`printf "\e[1;33m"`
 
+KNOWNHOSTS=/root/.ssh/known_hosts
+
+if [ -f "$KNOWNHOSTS" ]; then
+    echo "$KNOWNHOSTS exists."
+else 
+    echo "$KNOWNHOSTS does not exist."
+    echo "creating $KNOWNHOSTS"
+    mkdir -p /root/.ssh && touch /root/.ssh/known_hosts
+fi
+
+
 apt update
 apt install sudo -y
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
