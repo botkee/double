@@ -211,6 +211,10 @@ echo "options {
 
 };" > /etc/bind/named.conf.options
 
+apt install ntp -y
+systemctl start ntp
+systemctl enable ntp
+
 systemctl enable bind9
 systemctl restart bind9
 
@@ -224,6 +228,8 @@ systemctl enable openvpn@server
 
 #Запустим openvpn:
 systemctl start openvpn@server
+
+
 
 #Скачиваем скрипт для первого сервера
 cd
